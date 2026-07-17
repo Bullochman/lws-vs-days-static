@@ -60,13 +60,13 @@
     .action-table th{color:var(--text-mute);font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;}
     .action-table td.num{text-align:right;color:var(--accent);font-family:ui-monospace,SFMono-Regular,monospace;font-weight:600;}
     /* Chest progress */
-    .chest-bar{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px;}
+    .chest-bar{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px;overflow-x:hidden;}
     .chest-bar h2{margin:0 0 12px;font-size:16px;color:var(--accent);}
-    .chest-row{display:flex;gap:12px;align-items:center;margin-bottom:10px;font-size:13px;}
+    .chest-row{display:flex;gap:12px;align-items:center;margin-bottom:10px;font-size:13px;flex-wrap:wrap;}
     .chest-icon{font-size:22px;line-height:1;flex-shrink:0;}
-    .chest-name{flex:1;min-width:100px;}
-    .chest-threshold{color:var(--text-dim);font-family:ui-monospace,SFMono-Regular,monospace;font-size:12px;}
-    .chest-progress-outer{flex:2;background:#050810;border-radius:8px;height:10px;overflow:hidden;min-width:120px;}
+    .chest-name{flex:1;min-width:80px;word-break:break-word;}
+    .chest-threshold{color:var(--text-dim);font-family:ui-monospace,SFMono-Regular,monospace;font-size:12px;white-space:nowrap;}
+    .chest-progress-outer{flex:2;background:#050810;border-radius:8px;height:10px;overflow:hidden;min-width:100px;}
     .chest-progress-inner{background:linear-gradient(90deg,var(--accent),var(--accent-hover));height:100%;transition:width .3s;}
     /* Calculator */
     .calc{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:24px;margin-bottom:24px;}
@@ -88,6 +88,24 @@
     .rules ul li strong{color:var(--text);}
     .footer-note{text-align:center;padding:24px 12px;color:var(--text-mute);font-size:12px;border-top:1px solid var(--border);margin-top:32px;line-height:1.6;}
     .kb-badge{display:inline-block;background:rgba(88,101,242,0.15);color:#5865F2;padding:2px 8px;border-radius:8px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;font-weight:700;margin-left:8px;}
+    /* Mobile polish (added 2026-07-17): defensive overflow guard on card
+       panels + 40px minimum touch target on buttons for finger-friendly taps. */
+    .today-banner,.details,.chest-bar,.calc,.rules{min-width:0;overflow-x:hidden;}
+    .action-table{max-width:100%;}
+    .action-table th,.action-table td{word-break:break-word;}
+    button,.lang-toggle,.feedback-pill{min-height:40px;}
+    .lws-cd-dismiss,.chest-icon{min-height:auto;} /* exclude tiny non-tap glyphs */
+    @media (max-width:520px){
+      .wrap{padding:14px 10px;}
+      .today-banner{padding:14px 16px;gap:12px;}
+      .today-name{font-size:22px;}
+      .today-vp{font-size:44px;}
+      .details,.chest-bar,.calc,.rules{padding:16px 14px;}
+      .details h2{font-size:17px;}
+      .action-table{font-size:12px;}
+      .action-table th,.action-table td{padding:6px 6px;}
+      .chest-threshold{font-size:11px;}
+    }
   </style>
   <script src="static/lws-countdown.js" defer></script>
 </head>
